@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.naming.Context;
@@ -57,4 +58,49 @@ public class DBBean {
 		}
 		return list;
 	}	
+	
+	public int insert(String job) {
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			String sql = "insert into todo(job) values(?)";
+			pstmt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+			pstmt.setString(1, job);
+			result = pstmt.executeUpdate();
+			if(result == 1) {
+				ResultSet rs = pstmt.getGeneratedKeys();
+				if(rs.next()) {
+					result = rs.getInt(1);
+				}
+			}
+		}catch(Exception e) {
+			System.out.println("insert에 문제가 있습니다.");
+		}finally {
+			if(pstmt!=null)try {pstmt.close();}catch(Exception e) {}
+			if(conn!=null)try {conn.close();}catch(Exception e) {}
+		}
+		return result;
+	}
+	
+	public int update(int id, boolean done) {
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			String sql = "update todo set done=? where id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setBoolean(1, done);
+			pstmt.setInt(2, id);
+			result = pstmt.executeUpdate();
+		}catch(Exception e) {
+			System.out.println("update에 문제가 있습니다.");
+		}finally {
+			if(pstmt!=null)try {pstmt.close();}catch(Exception e) {}
+			if(conn!=null)try {conn.close();}catch(Exception e) {}
+		}
+		return result;
+	}
 }
