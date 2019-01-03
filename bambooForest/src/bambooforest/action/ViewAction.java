@@ -15,6 +15,7 @@ public class ViewAction implements Action{
 			int postid = Integer.parseInt(pid);
 			PostDBBean db = PostDBBean.getInstance();
 			request.setAttribute("post", db.getPost(postid));
+			request.setAttribute("replyList", db.getReplyList(postid));
 		}
 		return "/view.jsp";
 	}

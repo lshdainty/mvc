@@ -17,5 +17,13 @@
 	<div style="float:right;">
 		글번호 : ${post.postid }, 작성일자 : ${post.created }
 	</div>
+	<ul>
+		<c:forEach var="re" items="${ replyList}">
+		<li><p>
+			<c:if test="${post.memberid == re.memberid}">(글쓴이)</c:if>
+			${re.comment } - ${re.created }</p>
+		</li>
+		</c:forEach>
+	</ul>
 </body>
 </html>
