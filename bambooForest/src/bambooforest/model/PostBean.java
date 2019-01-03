@@ -7,7 +7,7 @@ public class PostBean {
 	private String title;
 	private String content;
 	private Timestamp created;
-	private String memeberid;
+	private String memberid;
 
 	public int getPostid() {
 		return postid;
@@ -37,10 +37,10 @@ public class PostBean {
 		this.created = created;
 	}
 	
-	public String getMemeberid() {
-		return memeberid;
+	public String getMemberid() {
+		return memberid;
 	}
-	public void setMemeberid(String memeberid) {
-		this.memeberid = memeberid;
+	public void setMemberid(String memberid) {
+		this.memberid = memberid;
 	}
 }
