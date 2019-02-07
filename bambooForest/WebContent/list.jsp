@@ -23,5 +23,6 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<h1>test중입니다.</h1>
 </body>
 </html>
