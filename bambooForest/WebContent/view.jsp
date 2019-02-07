@@ -25,5 +25,6 @@
 		</li>
 		</c:forEach>
 	</ul>
+	<h1>view테스트중입니다.</h1>
 </body>
 </html>
